@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ks6uwo7q5w0v"]
+
+[ext_resource type="Texture2D" uid="uid://fomyt8asuc6h" path="res://sprites/units/Blue Units/Archer/Arrow.png" id="1_hbbgm"]
+[ext_resource type="Script" uid="uid://bvs4yv7epqhj6" path="res://scripts/arrow.gd" id="1_nvpot"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_23jat"]
+radius = 6.0
+height = 43.0
+
+[node name="Arrow" type="RigidBody2D" groups=["arrows"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_nvpot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hbbgm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_23jat")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-22, -6, 43, 12)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
